@@ -13,7 +13,7 @@ if command -v pacman &> /dev/null; then
     echo "📦 Installing system dependencies via pacman..."
     sudo pacman -S --needed --noconfirm \
         neovim tmux fzf ripgrep fd stylua clang tree-sitter-cli \
-        nodejs npm python-pyright ruff \
+        nodejs npm ruff \
         sway foot fuzzel mpv mako yazi \
         git wget curl unzip
 else
