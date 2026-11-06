@@ -26,8 +26,8 @@ To install these dotfiles on a fresh Arch Linux machine:
 
 3. **Run the installer:**
    ```bash
-   chmod +x ~/.dotfiles/install.sh
-   ~/.dotfiles/install.sh
+   chmod +x ~/.config/dotfiles-meta/install.sh
+   ~/.config/dotfiles-meta/install.sh
    ```
 
 
