@@ -13,18 +13,21 @@ set $browser brave-origin
 set $installer $term -e sh -c 'pkg=$(pacman -Slq | fzf --preview "pacman -Si {}") && [ -n "$pkg" ] && sudo pacman -S "$pkg"'
 
 set $file_menu $term -e yazi
+set $file_manager nautilus
 set $app_menu fuzzel
-set $dmenu fuzzel --dmenu
+set $dmenu fuzzel --dmenu --with-nth 2
 
-set $ssfull grim -t jpeg ~/pics/ss/$(date +%Y-%m-%d_%H-%m-%s).jpg
-set $ssarea grim -t jpeg -g "$(slurp)" ~/pics/ss/$(date +%Y-%m-%d_%H-%m-%s).jpg
+set $ssfull grim -t jpeg - | tee ~/pics/ss/$(date +%Y-%m-%d_%H-%m-%s).jpg | wl-copy && notify-send "Screenshot" "Full screen saved & copied"
 
-set $wall /home/nabaraj/.local/share/backgrounds/cool_boy.jpg
+set $ssarea sh -c 'geom=$(slurp) && [ -n "$geom" ] && grim -t jpeg -g "$geom" - | tee ~/pics/ss/$(date +%Y-%m-%d_%H-%m-%s).jpg | wl-copy && notify-send "Screenshot" "Area saved & copied"'
+
+set $wall /home/nabaraj/.local/share/backgrounds/mount-corcoran-painting.jpg
 
 ### Key bindings
 bindsym $mod+i exec $installer
 bindsym $mod+Space exec $app_menu
 bindsym $mod+s exec $file_menu
+bindsym $mod+Shift+f exec $file_manager
 
 bindsym $mod+Return exec $term
 bindsym $mod+w kill
@@ -40,6 +43,7 @@ bindsym $mod+Shift+w exec $term -e impala
 bindsym $mod+n exec $file_menu ~/notes 
 
 bindsym $mod+v exec cliphist list | $dmenu | cliphist decode | wl-copy
+# bindsym $mod+v exec ~/.local/bin/cliphist-fuzzel-img
 
 # Look n Feel
 smart_borders off
@@ -56,6 +60,7 @@ exec wl-paste --type image --watch cliphist store
 exec autotiling -l 2
 exec udiskie
 
+
 # Input configuration
 input type:touchpad {
   dwt enabled
@@ -65,7 +70,6 @@ input type:touchpad {
 }
 
 output eDP-1 {
-    scale 1.5
     background $wall fill
     resolution 2880x1620@120Hz
   }
@@ -231,6 +235,8 @@ bar {
     }
 }
 
+exec setenv XDG_CACHE_HOME $HOME/.cache
+
 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment DISPLAY \
                                          SWAYSOCK \
@@ -242,3 +248,5 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
                                                   SWAYSOCK \
                                                   XDG_CURRENT_DESKTOP=sway \
                                                   WAYLAND_DISPLAY
+
+

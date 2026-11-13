@@ -48,6 +48,10 @@
       "rev": "15af492b64f4677959fe95008f1d5b782fe1f86a",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
+    "transparent.nvim": {
+      "rev": "792b1d6caff49ba0c166921d78495273d25a7edd",
+      "src": "https://github.com/xiyaowong/transparent.nvim"
+    },
     "vague.nvim": {
       "rev": "73f8aaa866bf3d14dd0b0ab9e48c11794c1cb7ab",
       "src": "https://github.com/vague2k/vague.nvim"
@@ -55,6 +59,10 @@
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-moonfly-colors": {
+      "rev": "2c883835f5b7b380a0a9e80695c420f7efebdfe4",
+      "src": "https://github.com/bluz71/vim-moonfly-colors"
     }
   }
 }
